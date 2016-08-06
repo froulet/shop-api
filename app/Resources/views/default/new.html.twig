@@ -1,40 +1,15 @@
-<html lang="en">
-<head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css" integrity="sha384-MIwDKRSSImVFAZCVLtU0LMDdON6KVCrZHyVQQj6e8wIEJkW4tvwqXrbMIya1vriY" crossorigin="anonymous">
-</head>
-<link rel="stylesheet" href="http://v4-alpha.getbootstrap.com/examples/starter-template/starter-template.css" >
-</head>
 
 
-<body>
-<nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
-<a class="navbar-brand" href="#">Shop Manager</a>
-<ul class="nav navbar-nav">
-  <li class="nav-item">
-    <a class="nav-link" href="./set">Set</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="./get">Get</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="./create">Create</a>
-  </li>
-</ul>
-</nav>
+{% embed "base.html.twig" %}
+      {% block content %}
+      {# app/Resources/views/default/new.html.twig #}
+      {{ form_start(form) }}
 
-<div class="container">
-{# app/Resources/views/default/new.html.twig #}
-{{ form_start(form) }}
+      {% include 'default/shopid.html.twig' with {'form': form} %}
+      {% include 'default/shopinfo.html.twig' with {'form': form} %}
 
-{% include 'default/shopid.html.twig' with {'form': form} %}
-{% include 'default/shopinfo.html.twig' with {'form': form} %}
+      <br>
 
-<br>
-
-{{ form_end(form) }}
-
-</div>
-
-</body>
-
-</html>
+      {{ form_end(form) }}
+      {% endblock %}
+{% endembed %}

@@ -19,6 +19,11 @@ class ShopManager extends BaseManager
     $this->container = $container;
   }
 
+  public function getAllShops()
+  {
+    return $this->em->getRepository('AppBundle:Shop')->findAll();
+  }
+
   public function addShopByForm($form, $request, $shop)
   {
     $form->handleRequest($request);
@@ -37,8 +42,6 @@ class ShopManager extends BaseManager
     if(!$form->isValid() && !$id){return null;}
     if ($form->isValid()){$idShop = $form["id"]->getData();}
     if($id){$idShop = $id;}
-
-    echo "Oui";
 
     $shop = $this->getShopById($idShop);
 

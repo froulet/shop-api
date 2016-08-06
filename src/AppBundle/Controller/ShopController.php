@@ -18,7 +18,7 @@ class ShopController extends Controller
 
 
   /**
-  * @Route("/shop/get/{id}")
+  * @Route("/shop/get/{id}", name="getShopId")
   * @Route("/shop/get")
   * @Method("GET|POST")
   */
@@ -42,7 +42,7 @@ class ShopController extends Controller
   }
 
   /**
-  * @Route("/shop/set")
+  * @Route("/shop/set", name="setShopId")
   * @Method("GET|POST")
   */
   public function setShopFormAction()
@@ -66,7 +66,7 @@ class ShopController extends Controller
 
 
   /**
-  * @Route("/shop/create")
+  * @Route("/shop/create", name="createShopId")
   * @Method("GET|POST")
   */
   public function createShopAction()
