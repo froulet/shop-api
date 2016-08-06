@@ -13,10 +13,26 @@ class ShopManager extends BaseManager
 
   protected $em;
 
-  public function __construct( $em)
+  public function __construct( $em, $container)
   {
     $this->em = $em;
+    $this->container = $container;
   }
+
+  public function checkFormAndPersist($form, $request, $shop)
+  {
+    $form->handleRequest($request);
+    if (!$form->isValid())
+    {return $null;}
+
+    $this->findShopBy($shop->getName(), $shop->getAddress());
+    $this->persistAndFlush($shop);
+    return $this->getJsonResponse($shop->jsonSerialize());
+
+  }
+
+
+
 
   /**
   * Retourne un shop au format JSON
