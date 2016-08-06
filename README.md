@@ -48,6 +48,8 @@ Les formulaires sont disponibles à partir d'un navigateur grâce aux adresses s
 - /shop/get
 
 La page root (/) recense tous les shops présents dans la base.
+Bootstrap a été utilisé afin d'obtenir une interface basique.
+
 
 Utilisation de l'API
 --------------

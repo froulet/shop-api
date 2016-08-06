@@ -15,7 +15,8 @@ class SetShopType extends AbstractType
     {
         $builder
         ->add('id', 'text', array("mapped" => false, "attr" => array("required" => true)))
-        ->add('Shop', new ShopInfoType(), array('data_class' => 'AppBundle\Entity\Shop', "label"=>false))
+        ->add('name', 'text', array("attr" => array("required" => true)))
+        ->add('address', 'text', array("attr" => array("required" => true)))
         ->add('save', 'submit', array("attr" => array("required" => true)))
         ;
     }
@@ -27,6 +28,7 @@ class SetShopType extends AbstractType
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
 {
+
     $resolver->setDefaults(array(
         'data_class' => 'AppBundle\Entity\Shop',
     ));

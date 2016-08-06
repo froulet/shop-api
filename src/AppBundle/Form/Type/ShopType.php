@@ -14,7 +14,8 @@ class ShopType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('Shop', new ShopInfoType(), array('data_class' => 'AppBundle\Entity\Shop', "label"=>false))
+        ->add('name', 'text', array("attr" => array("required" => true)))
+        ->add('address', 'text', array("attr" => array("required" => true)))
         ->add('save', 'submit', array("attr" => array("required" => true)))
         ;
     }

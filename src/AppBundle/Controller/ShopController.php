@@ -32,8 +32,7 @@ class ShopController extends Controller
     $manager = $this->get('shop_manager');
     $res = $manager->getShopByForm($form, $this->get('request'), $shop, $id);
 
-    if($res != null)
-    {return $res;}
+    if($res != null){return $res;}
 
     return $this->render('default/new.html.twig', array(
             'form' => $form->createView(),
@@ -55,8 +54,7 @@ class ShopController extends Controller
     $manager = $this->get('shop_manager');
     $res = $manager->setShopByForm($form, $this->get('request'), $shop);
 
-    if($res != null)
-    {return $res;}
+    if($res != null){return $res;}
 
     return $this->render('default/new.html.twig', array(
             'form' => $form->createView(),
@@ -78,8 +76,7 @@ class ShopController extends Controller
     $manager = $this->get('shop_manager');
     $res = $manager->addShopByForm($form, $this->get('request'), $shop);
 
-    if($res != null)
-    {return $res;}
+    if($res != null){return $res;}
 
     return $this->render('default/new.html.twig', array(
       'form' => $form->createView(),

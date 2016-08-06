@@ -1,3 +1,4 @@
+{# Besoin de refacto ici : Possibilité de créer une macro pour éviter la redondance de structure #}
 {% if form.id is defined %}
 
 <div>
@@ -7,7 +8,27 @@
 
     {{ form_widget(form.id) }}
 </div>
-
 {% do form.id.setRendered %}
+{% endif %}
 
+{% if form.name is defined %}
+<div>
+    {{ form_label(form.name) }}
+    <br>
+    {{ form_errors(form.name) }}
+
+    {{ form_widget(form.name) }}
+</div>
+{% do form.name.setRendered %}
+{% endif %}
+
+{% if form.address is defined %}
+<div>
+    {{ form_label(form.address) }}
+    <br>
+    {{ form_errors(form.address) }}
+
+    {{ form_widget(form.address) }}
+</div>
+{% do form.address.setRendered %}
 {% endif %}
