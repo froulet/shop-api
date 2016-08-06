@@ -15,16 +15,7 @@ use AppBundle\Entity\Shop;
 
 class ShopController extends Controller
 {
-  /**
-  * @Route("/rest/shop/get")
-  * @Method("POST")
-  */
-  public function getShopAction()
-  {
-    $manager = $this->get('shop_manager');
-    $res = $manager->getShop($this->get('request')->getContent());
-    return $res;
-  }
+
 
   /**
   * @Route("/shop/get/{id}")
@@ -94,29 +85,6 @@ class ShopController extends Controller
       'form' => $form->createView(),
     ));
 
-  }
-
-
-  /**
-  * @Route("/rest/shop/create")
-  * @Method("POST")
-  */
-  public function apicreateShopAction()
-  {
-    $manager = $this->get('shop_manager');
-    $res = $manager->createShop($this->get('request')->getContent());
-    return $res;
-  }
-
-  /**
-  * @Route("/rest/shop/set")
-  * @Method("POST")
-  */
-  public function setShopAction()
-  {
-    $manager = $this->get('shop_manager');
-    $res = $manager->setShop($this->get('request')->getContent());
-    return $res;
   }
 
 
