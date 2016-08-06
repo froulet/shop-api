@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use AppBundle\Form\Type\ShopType;
 use AppBundle\Form\Type\GetShopType;
+use AppBundle\Form\Type\SetShopType;
 use AppBundle\Entity\Shop;
 
 
@@ -29,7 +30,7 @@ class ShopController extends Controller
   * @Route("/shop/get")
   * @Method("GET|POST")
   */
-  public function getShopGetAction()
+  public function getShopFormAction()
   {
 
     $shop = new Shop();
@@ -48,6 +49,30 @@ class ShopController extends Controller
           ));
 
   }
+
+  /**
+  * @Route("/shop/set")
+  * @Method("GET|POST")
+  */
+  public function setShopFormAction()
+  {
+
+    $shop = new Shop();
+
+    $form = $this->createForm(new SetShopType(), $shop);
+
+    $manager = $this->get('shop_manager');
+    $res = $manager->setShopByForm($form, $this->get('request'), $shop);
+
+    if($res != null)
+    {return $res;}
+
+    return $this->render('default/new.html.twig', array(
+            'form' => $form->createView(),
+          ));
+
+  }
+
 
   /**
   * @Route("/shop/create")
@@ -84,7 +109,7 @@ class ShopController extends Controller
   }
 
   /**
-  * @Route("/shop/set")
+  * @Route("/rest/shop/set")
   * @Method("POST")
   */
   public function setShopAction()
