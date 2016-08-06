@@ -1,7 +1,8 @@
 INSTALLATION :
 ========================
-
+```
 $ composer install
+```
 
 L'installateur Symfony de composer devrait par la suite vous permettre de configurer automatiquement votre fichier app/config/parameters.yml.
 Si ce n'est pas le cas, faites le manuellement.
@@ -26,6 +27,9 @@ Utilisation de l'API
 --------------
 
 J'ai arbitrairement choisi d'envoyer les data à l'API au format RAW (pour les méthodes POST, dans le Body de la requête).
+J'aurais également pu mettre ceux-ci en tant que form-data.
+
+## Exemples :
 
 Pour la route /shop/get :
 ```
@@ -35,7 +39,7 @@ Pour la route /shop/get :
 }
 ```
 
-Par exemple, pour la route /shop/create :
+Pour la route /shop/create :
 ```
 {
 
