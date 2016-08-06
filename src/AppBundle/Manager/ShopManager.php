@@ -30,12 +30,17 @@ class ShopManager extends BaseManager
 
   }
 
-  public function getShopByForm($form, $request, $shop)
+  public function getShopByForm($form, $request, $shop, $id)
   {
     $form->handleRequest($request);
-    if (!$form->isValid()){return null;}
 
-    $shop = $this->getShopById($form["id"]->getData());
+    if(!$form->isValid() && !$id){return null;}
+    if ($form->isValid()){$idShop = $form["id"]->getData();}
+    if($id){$idShop = $id;}
+
+    echo "Oui";
+
+    $shop = $this->getShopById($idShop);
 
     return $this->getJsonResponse($shop->jsonSerialize());
 

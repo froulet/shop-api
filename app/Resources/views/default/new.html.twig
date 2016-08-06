@@ -9,23 +9,32 @@
 <body>
 <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
 <a class="navbar-brand" href="#">Shop Manager</a>
+<ul class="nav navbar-nav">
+  <li class="nav-item">
+    <a class="nav-link" href="./set">Set</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./get">Get</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./create">Create</a>
+  </li>
+</ul>
 </nav>
 
 <div class="container">
 {# app/Resources/views/default/new.html.twig #}
 {{ form_start(form) }}
-{% for child in form %}
-{% if 'token' not in form_label(child) %}
-{{ form_label(child) }}
-{% endif %}
+
+{% include 'default/shopid.html.twig' with {'form': form} %}
+{% include 'default/shopinfo.html.twig' with {'form': form} %}
+
 <br>
 
-{{ form_widget(child) }}
-<br>
-{% endfor %}
-{{ form_rest(form) }}
 {{ form_end(form) }}
+
 </div>
+
 </body>
 
 </html>

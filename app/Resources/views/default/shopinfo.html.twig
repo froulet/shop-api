@@ -1,0 +1,18 @@
+{% if form.Shop is defined %}
+
+
+{% for child in form.Shop %}
+
+{% if 'token' not in form_label(child) %}
+<br>
+{{ form_label(child) }}
+{% endif %}
+<br>
+
+{{ form_widget(child) }}
+<br>
+{% endfor %}
+
+{% do form.Shop.setRendered %}
+
+{% endif %}

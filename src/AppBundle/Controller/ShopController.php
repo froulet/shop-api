@@ -27,19 +27,19 @@ class ShopController extends Controller
   }
 
   /**
+  * @Route("/shop/get/{id}")
   * @Route("/shop/get")
   * @Method("GET|POST")
   */
-  public function getShopFormAction()
+  public function getShopFormAction($id = null)
   {
 
     $shop = new Shop();
 
     $form = $this->createForm(new GetShopType());
 
-
     $manager = $this->get('shop_manager');
-    $res = $manager->getShopByForm($form, $this->get('request'), $shop);
+    $res = $manager->getShopByForm($form, $this->get('request'), $shop, $id);
 
     if($res != null)
     {return $res;}

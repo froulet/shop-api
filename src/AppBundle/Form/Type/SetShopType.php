@@ -7,16 +7,16 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use AppBundle\Entity\Shop;
+use AppBundle\Form\Type\ShopInfoType;
 
 class SetShopType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('id', 'text', array("mapped" => false))
-        ->add('name', 'text')
-        ->add('address', 'text')
-        ->add('save', 'submit')
+        ->add('id', 'text', array("mapped" => false, "attr" => array("required" => true)))
+        ->add('Shop', new ShopInfoType(), array('data_class' => 'AppBundle\Entity\Shop', "label"=>false))
+        ->add('save', 'submit', array("attr" => array("required" => true)))
         ;
     }
 
