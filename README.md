@@ -56,4 +56,6 @@ Pour la route /shop/get :
 (Des **screens sont également disponibles dans le dossier 'doc'**, ayant utilisé POSTMAN pour tester l'API).
 
 En espérant que cela vous convienne et en espérant de tout coeur travailler prochainement avec vous,
+
+
 Frantz
