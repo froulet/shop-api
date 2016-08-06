@@ -19,11 +19,11 @@ class ShopManager extends BaseManager
     $this->container = $container;
   }
 
-  public function checkFormAndPersist($form, $request, $shop)
+  public function addShopByForm($form, $request, $shop)
   {
     $form->handleRequest($request);
     if (!$form->isValid())
-    {return $null;}
+    {return null;}
 
     $this->findShopBy($shop->getName(), $shop->getAddress());
     $this->persistAndFlush($shop);
@@ -31,8 +31,24 @@ class ShopManager extends BaseManager
 
   }
 
+  public function getShopByForm($form, $request, $shop)
+  {
+    $form->handleRequest($request);
+    if (!$form->isValid())
+    {return null;}
+    
+    $shop = $this->getShopById($form["id"]->getData());
+
+    return $this->getJsonResponse($shop->jsonSerialize());
+
+  }
 
 
+  public function checkForm($form)
+  {
+    if (!$form->isValid())
+    {return null;}
+  }
 
   /**
   * Retourne un shop au format JSON

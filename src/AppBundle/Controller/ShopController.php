@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use AppBundle\Form\Type\ShopType;
+use AppBundle\Form\Type\GetShopType;
 use AppBundle\Entity\Shop;
 
 
@@ -33,22 +34,18 @@ class ShopController extends Controller
 
     $shop = new Shop();
 
-    $form = $this->createFormBuilder()
-        ->add('id', 'text')
-        ->add('save', 'submit')
-        ->getForm();
+    $form = $this->createForm(new GetShopType());
 
-  return $this->render('default/new.html.twig', array(
-          'form' => $form->createView(),
-        ));
 
     $manager = $this->get('shop_manager');
-    $res = $manager->checkFormAndPersist($form, $this->get('request'), $shop);
+    $res = $manager->getShopByForm($form, $this->get('request'), $shop);
 
     if($res != null)
     {return $res;}
 
-
+    return $this->render('default/new.html.twig', array(
+            'form' => $form->createView(),
+          ));
 
   }
 
@@ -63,7 +60,7 @@ class ShopController extends Controller
 
     $form = $this->createForm(new ShopType(), $shop);
     $manager = $this->get('shop_manager');
-    $res = $manager->checkFormAndPersist($form, $this->get('request'), $shop);
+    $res = $manager->addShopByForm($form, $this->get('request'), $shop);
 
     if($res != null)
     {return $res;}
