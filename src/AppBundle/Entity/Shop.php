@@ -95,6 +95,7 @@ class Shop
   public function jsonSerialize($id=false)
   {
     $array = array();
+    
     if($id)
     {$array["id"] = $this->id;}
 

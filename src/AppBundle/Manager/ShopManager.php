@@ -18,6 +18,13 @@ class ShopManager extends BaseManager
     $this->em = $em;
   }
 
+  /**
+  * Retourne un shop au format JSON
+  *
+  *
+  * @param  	Symfony request object
+  * @return 	HTTP Json Response
+  */
   public function getShop($content)
   {
 
@@ -28,6 +35,13 @@ class ShopManager extends BaseManager
     return $response;
   }
 
+  /**
+  * Crée un nouveau shop et le renvoie au format JSON
+  *
+  *
+  * @param  	Symfony request object
+  * @return 	HTTP Json Response
+  */
   public function createShop($content)
   {
 
@@ -37,6 +51,13 @@ class ShopManager extends BaseManager
     return $response;
   }
 
+  /**
+  * Mise à jour d'un shop et le renvoyer au format JSON
+  *
+  *
+  * @param  	Symfony request object
+  * @return 	HTTP Json Response
+  */
   public function setShop($content)
   {
 
@@ -47,12 +68,14 @@ class ShopManager extends BaseManager
     return $response;
   }
 
-  public function checkAttributesLength($name, $address)
-  {
-    if(strlen($name) < 3 || strlen($address) < 3 )
-    { throw new \Exception('Name or Address too short !');}
-  }
 
+  /**
+  * Vérifie l'existence d'un Shop
+  *
+  *
+  * @param  	Objet Shop, boolean optionnal
+  * @return 	nothing
+  */
   public function checkShop($shop, $set=false)
   {
     //[SAFEGUARD]
@@ -63,6 +86,13 @@ class ShopManager extends BaseManager
     throw new NotFoundHttpException("Page not found");
   }
 
+  /**
+  * Récupère un shop par son Id
+  *
+  *
+  * @param  	id du shop, boolean optionnal
+  * @return 	Objet shop
+  */
   public function getShopById($id, $set=false)
   {
     $repository = $this->em->getRepository('AppBundle:Shop');
@@ -73,12 +103,26 @@ class ShopManager extends BaseManager
     return $shop;
   }
 
+  /**
+  * Décode une string en JSON
+  *
+  *
+  * @param  	string JSON
+  * @return 	array
+  */
   public function parseJson($content)
   {
     $json = json_decode($content, true);
     return $json;
   }
 
+  /**
+  * Crée l'objet JSON de Symfony en l'encodant en JSON
+  *
+  *
+  * @param  	array des data
+  * @return 	objet Response
+  */
   public function getJsonResponse($data)
   {
     return new Response(
@@ -88,37 +132,77 @@ class ShopManager extends BaseManager
   );
 }
 
-  public function addShop($name, $address)
-  {
-    $this->findShopBy($name, $address);
-    $shop = new Shop();
-    $this->setNameAndAdress($shop, $name, $address);
-    $this->persistAndFlush($shop);
+/**
+* Ajouter un shop dans la database
+*
+*
+* @param  	nom, adresse
+* @return 	objet Shop nouvellement crée
+*/
+public function addShop($name, $address)
+{
+  $this->findShopBy($name, $address);
+  $shop = new Shop();
+  $this->setNameAndAdress($shop, $name, $address);
+  $this->persistAndFlush($shop);
 
-    return $shop;
-  }
+  return $shop;
+}
 
-  public function updateShop($shop, $name, $address)
-  {
-    $this->checkAttributesLength($name, $address);
-    $this->setNameAndAdress($shop, $name, $address);
-    $this->persistAndFlush($shop);
-    return $shop;
-  }
+/**
+* Mise à jour d'un shop dans la database
+*
+*
+* @param  	Objet shop, nom, adresse
+* @return 	Objet shop mis à jour
+*/
+public function updateShop($shop, $name, $address)
+{
+  $this->checkAttributesLength($name, $address);
+  $this->setNameAndAdress($shop, $name, $address);
+  $this->persistAndFlush($shop);
+  return $shop;
+}
 
-  public function setNameAndAdress($shop, $name, $address)
-  {
-    $shop->setName($name);
-    $shop->setAddress($address);
-    return $shop;
-  }
 
-  public function findShopBy($name, $address)
-  {
-    $repository = $this->em->getRepository('AppBundle:Shop');
-    $shop = $repository->findOneBy(
-    array('name' => $name, 'address' => $address));
-    if($shop){throw new \Exception('Shop already exists !');}
-  }
+/**
+* Fonction helper permettant de mettre à jour les champs address et name dans l'objet shop
+*
+*
+* @param  	Objet shop, nom, adresse
+* @return 	Objet shop mis à jour
+*/
+public function setNameAndAdress($shop, $name, $address)
+{
+  $shop->setName($name);
+  $shop->setAddress($address);
+  return $shop;
+}
+
+/**
+* Vérifier si un objet shop de par son nom et son adresse, n'existe pas déjà
+*
+*
+* @param  	nom, adresse
+*/
+public function findShopBy($name, $address)
+{
+  $repository = $this->em->getRepository('AppBundle:Shop');
+  $shop = $repository->findOneBy(
+  array('name' => $name, 'address' => $address));
+  if($shop){throw new \Exception('Shop already exists !');}
+}
+
+/**
+* Vérifie la taille des attributs nom et addresse
+*
+*
+* @param  	nom, adresse
+*/
+public function checkAttributesLength($name, $address)
+{
+  if(strlen($name) < 3 || strlen($address) < 3 )
+  { throw new \Exception('Name or Address too short !');}
+}
 
 }

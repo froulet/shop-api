@@ -16,7 +16,7 @@ class InstallCommand extends ContainerAwareCommand {
     {
 
         $this->setName("shop:install")
-             ->setDescription("Display the fibonacci numbers between 2 given numbers");
+             ->setDescription("Installation des fixtures");
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -32,6 +32,6 @@ class InstallCommand extends ContainerAwareCommand {
       $manager->addShop("Rabican Abril", "49, rue Beauvau");
       $manager->addShop("Arridano Mouet", "67, rue Reine Elisabeth");
 
-      echo "OK";
+      echo "Fixtures bien installées.";
   }
 }
