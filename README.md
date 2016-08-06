@@ -39,6 +39,15 @@ en utilisant les tags YML permettant de définir des groupes.
 
 4. Finalement, j'aurais utilisé le bundle **NelmioApiDocBundle** afin d'automatiquement **générer la documentation de l'API**.
 
+Utilisation des formulaires
+--------------
+
+Les formulaires sont disponibles à partir d'un navigateur grâce aux adresses suivantes :
+- /shop/create
+- /shop/set
+- /shop/get
+
+La page root (/) recense tous les shops présents dans la base.
 
 Utilisation de l'API
 --------------
@@ -49,7 +58,7 @@ J'aurais également pu mettre ceux-ci en tant que form-data, ou bien passer des 
 
 ## Exemples :
 
-Pour la route /shop/get :
+Pour la route /rest/shop/get :
 ```
 {
 
@@ -57,7 +66,7 @@ Pour la route /shop/get :
 }
 ```
 
-Pour la route /shop/create :
+Pour la route /rest/shop/create :
 ```
 {
 
@@ -66,7 +75,7 @@ Pour la route /shop/create :
 }
 ```
 
-Pour la route /shop/get :
+Pour la route /rest/shop/get :
 ```
 {
   "id": 2,
